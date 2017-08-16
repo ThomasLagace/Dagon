@@ -5,13 +5,31 @@ if (isset($_GET['do'])) {
     switch ($d) {
         case "login":
             login($_POST['login'], $_POST['password']);
+            redirect('/index.php');
             break;
 
         case "register":
-            register($_POST['login'], $_POST['password'], $_POST['code']);
+            if ($_POST['password'] == $_POST['confirmPassword']) {
+                register($_POST['registerUser'], $_POST['requestedPassword'], $_POST['code']);
+                redirect('/index.php');
+            } else {
+                echo "Those passwords aren't the same!!! :(";
+            }
             break;
+
+        case "logout":
+            destroySession();
+            redirect('/');
+            break;
+
+        case '':
+            echo "Well you called do but did nothing. Are you dull?";
+            break;
+
+        default:
+            echo "I'm but a dumb computer that can only do what it knows.";
     }
 }
 else {
-    echo "<p>Ya' need some sorta args ya' doofus</p>";
+    echo "Ya' need some sorta args ya' doofus";
 }

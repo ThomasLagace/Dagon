@@ -1,6 +1,7 @@
 <?php
 session_start();
-# Contains database connection code + other various settings 
+# Contains database connection code + other various settings. Change these
+# settings in production.
 define('DAG_DB_CONNECT', 'pgsql:host=localhost;port=5432;dbname=dagondb;');
 define('DAG_DB_USER', 'wizard');
 define('DAG_DB_PASS', 'qweasdzxc3');
