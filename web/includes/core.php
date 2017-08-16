@@ -7,13 +7,6 @@ function redirect($url, $permanent = false)
     return;
 }
 
-function refresh($url = '.') {
-     echo "<meta http-equiv='refresh' content='0' URL=".$url.">";
-     exit();
-    # exit(header('Refresh: 1; url=' . $url));
-    return;
-}
-
 function createSession($user, $level) {
     $_SESSION['currentUser']   = $user;
     $_SESSION['level']         = $level;
@@ -57,7 +50,7 @@ function register($login, $password, $code) {
     # First, hash the password to store securely in the database
     $passhash = password_hash($password, PASSWORD_DEFAULT);
 
-    $q = $db->prepare("INSERT INTO utilizers (login, password, lvl) VALUES (:login, :password, :lvl)");
+    $q = $db->prepare("INSERT INTO utilizers (login, password, lvl, creation_date) VALUES (:login, :password, :lvl, current_date)");
     $q->bindParam(':login', $login);
     $q->bindParam(':password', $passhash);
     $q->bindParam(':lvl', $r['lvl']);

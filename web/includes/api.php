@@ -10,7 +10,7 @@ if (isset($_GET['do'])) {
 
         case "register":
             if ($_POST['password'] == $_POST['confirmPassword']) {
-                register($_POST['registerUser'], $_POST['requestedPassword'], $_POST['code']);
+                register($_POST['login'], $_POST['password'], $_POST['code']);
                 redirect('/index.php');
             } else {
                 echo "Those passwords aren't the same!!! :(";
