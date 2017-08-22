@@ -12,6 +12,8 @@ CREATE TABLE utilizers (
 -- Blog content go here.
 CREATE TABLE posts (
     id serial PRIMARY KEY,
+    author varchar(255) NOT NULL,
+    creation_date date NOT NULL,
     title varchar(255) NOT NULL,
     body varchar NOT NULL,
     tags varchar DEFAULT NULL

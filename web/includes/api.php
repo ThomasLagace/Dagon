@@ -22,6 +22,18 @@ if (isset($_GET['do'])) {
             redirect('/');
             break;
 
+        case "makepost":
+            if( !isLoggedIn() ) {
+                break;
+            }
+            if( isHtml($_POST['title']) || isHtml($_POST['body']) || isHtml($_POST['tags']) ) {
+                echo "You musn't have html taggens!";
+                break;
+            }
+            addPost($_SESSION['login'], $_POST['title'], $_POST['body'], $_POST['tags']);
+            redirect('/');
+            break;
+
         case '':
             echo "Well you called do but did nothing. Are you dull?";
             break;

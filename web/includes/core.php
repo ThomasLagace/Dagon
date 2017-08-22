@@ -3,7 +3,7 @@ require_once('settings.inc.php');
 
 function redirect($url, $permanent = false)
 {
-    exit(header('Location: ' . $url, true, $permanent ? 301 : 302));
+    exit(header('Location: ' . $url, $permanent ? 301 : 302));
     return;
 }
 
@@ -21,6 +21,23 @@ function destroySession() {
     return;
 }
 
+function wallOff($requiredLevel) {
+    if ( !isset($_SESSION['level']) || $_SESSION['level'] <= $requiredLevel )
+        exit(header('Location: /error.php', 403));
+    return;
+}
+
+function isHtml($string) {
+    if ( $string != strip_tags($string) ) {
+        return true;
+    }
+    return false;
+}
+
+function isLoggedIn() {
+    return isset($_SESSION['login']);
+}
+
 function register($login, $password, $code) {
     # Shoutouts to Tim for telling me that global variables are automatically
     # included in the funciton's scope.
@@ -29,6 +46,9 @@ function register($login, $password, $code) {
     # similarities because Jack is a lot smarter than me at the time being.
     # https://github.com/Foltik/Shimapan/blob/master/includes/core.php
 
+    if ( isHtml('currentUser') ) {
+        echo "<p>You cannot have any html tags in your name (cursed hacker...)</p>";
+    }
     # Check access code
     $q = $db->prepare("SELECT id, used, lvl FROM invites WHERE code = (:code) AND used = FALSE");
     $q->bindParam(':code', $code);
@@ -82,12 +102,13 @@ function login($login, $password) {
     return;
 }
 
-function addPost($title, $body, $tags) {
+function addPost($author, $title, $body, $tags) {
     global $db;
     # Check if utilizer has permissions to post
     if (!isset($_SESSION['level']) || $_SESSION['level'] > 3) return;
     # If so, shove their data into the 'base
-    $q = $db->prepare("INSERT INTO posts (title, body, tags) VALUES (:title, :body, :tags)");
+    $q = $db->prepare("INSERT INTO posts (author, creation_date, title, body, tags) VALUES (:author, :current_date, :title, :body, :tags)");
+    $q->bindParam(':author', $author);
     $q->bindParam(':title', $title);
     $q->bindParam(':body', $body);
     $q->bindParam(':tags', $tags);

@@ -21,12 +21,17 @@
     </form>
 
     <a href="/includes/api.php?do=logout">Unplug</a>
+    <br>
+    <a href="/test.php">Testing Function</a>
 
     <p>You are jacked in as: <?php
     session_start();
-    if (isset($_SESSION['currentUser']) ) {
-        echo $_SESSION['currentUser'];
-    } else echo 'nobody' ?> </p>
+    if (!isset($_SESSION['currentUser']) ) {
+        echo 'nobody';
+    } else echo $_SESSION['currentUser'] . " with a level of: " . $_SESSION['level'] . "</p><br><a href='/makepost.php'>Make a post!</a>";
+    ?>
+    <br>
+    <?php require_once('includes/core.php'); print fetchPost(1); ?>
 
 
     </body>
