@@ -1,6 +1,16 @@
 <?php
 require_once('settings.inc.php');
 
+function debug_to_console( $data ) {
+
+	if ( is_array( $data ) )
+		$output = "<script>console.log( 'Debug Objects: " . implode( ',', $data) . "' );</script>";
+	else
+		$output = "<script>console.log( 'Debug Objects: " . $data . "' );</script>";
+
+	echo $output;
+}
+
 function redirect($url, $permanent = false)
 {
     exit(header('Location: ' . $url, $permanent ? 301 : 302));
@@ -35,7 +45,7 @@ function isHtml($string) {
 }
 
 function isLoggedIn() {
-    return isset($_SESSION['login']);
+    return isset($_SESSION['currentUser']);
 }
 
 function register($login, $password, $code) {
@@ -105,9 +115,10 @@ function login($login, $password) {
 function addPost($author, $title, $body, $tags) {
     global $db;
     # Check if utilizer has permissions to post
-    if (!isset($_SESSION['level']) || $_SESSION['level'] > 3) return;
+    //if (!isset($_SESSION['level']) || $_SESSION['level'] < 3) redirect('/error.php');
+    wallOff(3);
     # If so, shove their data into the 'base
-    $q = $db->prepare("INSERT INTO posts (author, creation_date, title, body, tags) VALUES (:author, :current_date, :title, :body, :tags)");
+    $q = $db->prepare("INSERT INTO posts (author, creation_date, title, body, tags) VALUES (:author, current_date, :title, :body, :tags)");
     $q->bindParam(':author', $author);
     $q->bindParam(':title', $title);
     $q->bindParam(':body', $body);

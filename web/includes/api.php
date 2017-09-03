@@ -24,13 +24,14 @@ if (isset($_GET['do'])) {
 
         case "makepost":
             if( !isLoggedIn() ) {
+                echo "Yer not logged in!";
                 break;
             }
             if( isHtml($_POST['title']) || isHtml($_POST['body']) || isHtml($_POST['tags']) ) {
                 echo "You musn't have html taggens!";
                 break;
             }
-            addPost($_SESSION['login'], $_POST['title'], $_POST['body'], $_POST['tags']);
+            addPost($_SESSION['currentUser'], $_POST['title'], $_POST['body'], $_POST['tags']);
             redirect('/');
             break;
 
