@@ -26,3 +26,10 @@ Directory Structure
     └── includes    -- Code for generating websites
 ```
 This is all subject to change
+
+TODO
+====
+* Make a way to view posts
+* Code cleanup, objectify many parts to make it more maintainable
+* Make it look pretty
+
