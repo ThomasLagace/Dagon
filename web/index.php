@@ -25,14 +25,13 @@
     <a href="/test.php">Testing Function</a>
 
     <p>You are jacked in as: <?php
-    session_start();
+    require_once('includes/core.php');
     if (!isset($_SESSION['currentUser']) ) {
         echo 'nobody';
-    } else echo $_SESSION['currentUser'] . " with a level of: " . $_SESSION['level'] . "</p><br><a href='/makepost.php'>Make a post!</a>";
+    } else echo $_SESSION['currentUser'] . " with a level of: " . $_SESSION['level'] . "</p>
+        <p><a href='/makepost.php'>Make a post!</a></p>";
+    echo "<p>"; echo print_r(fetchPost(1), TRUE); echo "</p>";
     ?>
-    <br>
-    <?php require_once('includes/core.php'); print fetchPost(1); ?>
-
 
     </body>
 </html>

@@ -130,8 +130,10 @@ function addPost($author, $title, $body, $tags) {
 # This is pretty obvious
 function fetchPost($id) {
     global $db;
-    $q = $db->prepare("SELECT * FROM posts WHERE id = (:id)");
+    $q = $db->prepare("SELECT * FROM posts WHERE id = :id");
     $q->bindParam(':id', $id);
+    $q->execute();
+    if ($q->rowCount() < 1) return "No posts can be shown!";
     $r = $q->fetch(PDO::FETCH_ASSOC);
     return $r;
 }
