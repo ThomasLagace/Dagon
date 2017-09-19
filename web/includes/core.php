@@ -112,28 +112,4 @@ function login($login, $password) {
     return;
 }
 
-function addPost($author, $title, $body, $tags) {
-    global $db;
-    # Check if utilizer has permissions to post
-    //if (!isset($_SESSION['level']) || $_SESSION['level'] < 3) redirect('/error.php');
-    wallOff(3);
-    # If so, shove their data into the 'base
-    $q = $db->prepare("INSERT INTO posts (author, creation_date, title, body, tags) VALUES (:author, current_date, :title, :body, :tags)");
-    $q->bindParam(':author', $author);
-    $q->bindParam(':title', $title);
-    $q->bindParam(':body', $body);
-    $q->bindParam(':tags', $tags);
-    $q->execute();
-    return;
-}
 
-# This is pretty obvious
-function fetchPost($id) {
-    global $db;
-    $q = $db->prepare("SELECT * FROM posts WHERE id = :id");
-    $q->bindParam(':id', $id);
-    $q->execute();
-    if ($q->rowCount() < 1) return "No posts can be shown!";
-    $r = $q->fetch(PDO::FETCH_ASSOC);
-    return $r;
-}
