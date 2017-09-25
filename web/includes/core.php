@@ -56,8 +56,9 @@ function register($login, $password, $code) {
     # similarities because Jack is a lot smarter than me at the time being.
     # https://github.com/Foltik/Shimapan/blob/master/includes/core.php
 
-    if ( isHtml('currentUser') ) {
+    if ( isHtml($login) ) {
         echo "<p>You cannot have any html tags in your name (cursed hacker...)</p>";
+        return;
     }
     # Check access code
     $q = $db->prepare("SELECT id, used, lvl FROM invites WHERE code = (:code) AND used = FALSE");
@@ -106,10 +107,8 @@ function login($login, $password) {
     $q->execute();
     $r = $q->fetch();
     if (password_verify($password, $r['password'])) {
-        createSession($r['login'], $r['lvl']);
+        createSession($r['login'], $r['lvl']); //Stores $r['login'] into $_SESSION['currentUser']
     } else
         echo "<p>rip login lmao</p>";
     return;
 }
-
-
