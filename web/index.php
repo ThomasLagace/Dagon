@@ -24,14 +24,18 @@
     <br>
     <a href="/test.php">Testing Function</a>
 
-    <p>You are jacked in as: <?php
+    <p>You are jacked in as: <?php //user name here
     require_once('includes/core.php');
     if (!isset($_SESSION['currentUser']) ) {
         echo 'nobody';
     } else echo $_SESSION['currentUser'] . " with a level of: " . $_SESSION['level'] . "</p>
-        <p><a href='/makepost.php'>Make a post!</a></p>";
-    echo "<p>"; echo print_r(fetchPost(1), TRUE); echo "</p>";
+        <p><a href='/makepost.php'>Make a post!</a></p>"; 
     ?>
-
+    <?php
+    require_once('./includes/BlogPost.php');
+    $blogPost = new BlogPost($id = 8);
+    $blogPost->id = 8;
+    echo "<p>" . print_r($blogPost->fetchPost(), TRUE) . "</p>";
+    ?>
     </body>
 </html>
