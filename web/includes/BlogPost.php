@@ -26,8 +26,9 @@ class BlogPost {
 
     function fetchPost() {
         global $db;
-        $q = $db->prepare("SELECT * FROM posts WHERE id = :id");
-        $q->bindParam(':id', $this->id);
+        //$q = $db->prepare("SELECT * FROM posts WHERE id = :id");
+        $q = $db->prepare("SELECT * FROM posts");
+        //$q->bindParam(':id', $this->id);
         $q->execute();
         if ($q->rowCount() < 1) return "No posts can be shown!";
         $r = $q->fetch(PDO::FETCH_ASSOC);

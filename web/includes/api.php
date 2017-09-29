@@ -1,5 +1,6 @@
 <?php
 require_once('core.php');
+require_once('BlogPost.php');
 if (isset($_GET['do'])) {
     $d = $_GET['do'];
     switch ($d) {
@@ -31,7 +32,12 @@ if (isset($_GET['do'])) {
                 echo "You musn't have html taggens!";
                 break;
             }
-            addPost($_SESSION['currentUser'], $_POST['title'], $_POST['body'], $_POST['tags']);
+            $bp = new BlogPost();
+            $bp->author = $_SESSION['currentUser'];
+            $bp->title = $_POST['title'];
+            $bp->body = $_POST['body'];
+            $bp->tags = $_POST['tags'];
+            $bp->addPost();
             redirect('/');
             break;
 

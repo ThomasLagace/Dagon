@@ -1,6 +1,12 @@
 <html>
     <head>
         <title>Thomas' Blog</title>
+<style>
+body {
+    background-color: #111111;
+    color: #eeeeee;
+}
+</style>
     </head>
 
     <body>
@@ -20,22 +26,22 @@
         <input type="submit" value="Register">
     </form>
 
-    <a href="/includes/api.php?do=logout">Unplug</a>
+    <a href="/includes/api.php?do=logout">Un_plug</a>
     <br>
     <a href="/test.php">Testing Function</a>
 
     <p>You are jacked in as: <?php //user name here
-    require_once('includes/core.php');
-    if (!isset($_SESSION['currentUser']) ) {
-        echo 'nobody';
-    } else echo $_SESSION['currentUser'] . " with a level of: " . $_SESSION['level'] . "</p>
-        <p><a href='/makepost.php'>Make a post!</a></p>"; 
+        require_once('includes/core.php');
+        if (!isset($_SESSION['currentUser']) ) {
+            echo 'nobody';
+        } else echo $_SESSION['currentUser'] . " with a level of: " . $_SESSION['level'] . "</p>
+            <p><a href='/makepost.php'>Make a post!</a></p>"; 
     ?>
     <?php
-    require_once('./includes/BlogPost.php');
-    $blogPost = new BlogPost($id = 8);
-    $blogPost->id = 8;
-    echo "<p>" . print_r($blogPost->fetchPost(), TRUE) . "</p>";
+        require_once('./includes/BlogPost.php');
+        $blogPost = new BlogPost($id = 8);
+        $blogPost->id = 8;
+        echo "<p>" . print_r($blogPost->fetchPost(), TRUE) . "</p>";
     ?>
     </body>
 </html>
