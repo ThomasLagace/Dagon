@@ -1,11 +1,13 @@
 <?php
 require_once('core.php');
 require_once('BlogPost.php');
+require_once('UserBase.php');
 if (isset($_GET['do'])) {
     $d = $_GET['do'];
     switch ($d) {
         case "login":
-            login($_POST['login'], $_POST['password']);
+            $connect = new UserBase($_POST['login']);
+            $connect->login($_POST['password']);
             redirect('/index.php');
             break;
 

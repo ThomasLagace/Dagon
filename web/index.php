@@ -1,3 +1,6 @@
+<?php require_once('./includes/BlogPost.php');
+    require_once('./includes/core.php');
+?>
 <html>
     <head>
         <title>Thomas' Blog</title>
@@ -31,17 +34,15 @@ body {
     <a href="/test.php">Testing Function</a>
 
     <p>You are jacked in as: <?php //user name here
-        require_once('includes/core.php');
-        if (!isset($_SESSION['currentUser']) ) {
+        if (!isset($_SESSION['username']) ) {
             echo 'nobody';
-        } else echo $_SESSION['currentUser'] . " with a level of: " . $_SESSION['level'] . "</p>
+        } else echo $_SESSION['username'] . " with a level of: " . $_SESSION['level'] . "</p>
             <p><a href='/makepost.php'>Make a post!</a></p>"; 
     ?>
+    <p>
     <?php
-        require_once('./includes/BlogPost.php');
-        $blogPost = new BlogPost($id = 8);
-        $blogPost->id = 8;
-        echo "<p>" . print_r($blogPost->fetchPost(), TRUE) . "</p>";
+        $blogPost = new BlogPost(8);
     ?>
+    </p>
     </body>
 </html>

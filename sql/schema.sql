@@ -6,7 +6,8 @@ CREATE TABLE utilizers (
     password varchar(255) NOT NULL,
     name varchar(255) DEFAULT NULL, --The user should be able to change their name.
     lvl int NOT NULL, -- How powerful the user is. Some php file'll detail it, I guess.
-    creation_date date NOT NULL
+    creation_date date NOT NULL,
+    avatar varchar
 );
 
 -- Blog content go here.
@@ -16,7 +17,9 @@ CREATE TABLE posts (
     creation_date date NOT NULL,
     title varchar(255) NOT NULL,
     body varchar NOT NULL,
-    tags varchar DEFAULT NULL
+    tags varchar DEFAULT NULL,
+    deleted boolean DEFAULT FALSE,
+    hidden boolean DEFAULT FALSE
 );
 
 -- In theory, you should have a unique commentid for every postid.
