@@ -1,19 +1,20 @@
 <?php
 require_once('core.php');
 require_once('BlogPost.php');
-require_once('UserBase.php');
+require_once('User.php');
 if (isset($_GET['do'])) {
     $d = $_GET['do'];
     switch ($d) {
         case "login":
-            $connect = new UserBase($_POST['login']);
+            $connect = new User($_POST['login']);
             $connect->login($_POST['password']);
             redirect('/index.php');
             break;
 
         case "register":
             if ($_POST['password'] == $_POST['confirmPassword']) {
-                register($_POST['login'], $_POST['password'], $_POST['code']);
+                $addUser = new User($_POST['login']);
+                $addUser->register($_POST['password'], $_POST['code']);
                 redirect('/index.php');
             } else {
                 echo "Those passwords aren't the same!!! :(";
@@ -35,10 +36,10 @@ if (isset($_GET['do'])) {
                 break;
             }
             $bp = new BlogPost();
-            $bp->author = $_SESSION['currentUser'];
-            $bp->title = $_POST['title'];
-            $bp->body = $_POST['body'];
-            $bp->tags = $_POST['tags'];
+            $bp->setAuthor($_SESSION['login']);
+            $bp->setTitle($_POST['title']);
+            $bp->setBody($_POST['body']);
+            $bp->setTags($_POST['tags']);
             $bp->addPost();
             redirect('/');
             break;

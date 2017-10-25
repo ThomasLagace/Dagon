@@ -40,8 +40,12 @@ body {
             <p><a href='/makepost.php'>Make a post!</a></p>"; 
     ?>
     <p>
-    <?php
-        $blogPost = new BlogPost(8);
+    <?php 
+    $blogPost = new BlogPost(0);
+    $r = $blogPost->show(0, 5);
+    foreach ($r as $key => $value) {
+        echo "<p>" . $value->id . " " .$value->title . " " .$value->body. " " . $value->tags . " " . $value->author . " " . $value->creation_date .  "</p>";
+    }
     ?>
     </p>
     </body>

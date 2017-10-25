@@ -1,5 +1,5 @@
 <?php
-require_once('settings.inc.php');
+require_once 'settings.inc.php';
 
 function redirect($url, $permanent = false)
 {
@@ -8,7 +8,8 @@ function redirect($url, $permanent = false)
 }
 
 function createSession($userID, $login, $level, $username = NULL) {
-    global $db;
+    if (array_key_exists('login', $_SESSION))
+       destroySession();
     $_SESSION['userID']   = $userID;
     $_SESSION['level']    = $level;
     if (array_key_exists('username', $_SESSION)) {
