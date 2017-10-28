@@ -137,7 +137,7 @@ class User {
             if ( is_null($r['name']) ) {
                 $r['name'] = $this->login;
             }
-            createSession($r['id'], $r['login'], $r['lvl'], $r['name']); //Stores $r['login'] into $_SESSION['currentUser']
+            createSession($r['id'], $this->login, $r['lvl'], $r['name']); //Stores $r['login'] into $_SESSION['login']
         } else
             echo "<p>rip login lmao</p>";
         return;

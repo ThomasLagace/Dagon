@@ -1,0 +1,85 @@
+p.codeblock {
+    font-family: monospace;
+    font-size: 120%;
+    padding: 1%;
+    border: 2px dotted #c652c6;
+    color: #eeeeee;
+}
+
+.blogPost { 
+    float: left;
+    background-color: #070707;
+    color: #eeeeee;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    width: 80%;
+    padding: 24px;
+    border: 2px solid #202020;
+}
+
+.sidebar {
+    float: right;
+    background-color: #070707;
+    color: #eeeeee;
+    margin-top: 1%;
+    padding: 1%;
+    border: 2px solid #202020;
+    width: 12%;
+}
+
+.header {
+    margin: 2%;
+    margin-top: 0%;
+    background-color: #070707;
+    padding: 1px;
+    border: 2px solid #202020;
+}
+a.bigLink {
+    color: #c652c6;
+}
+
+a:visited.bigLink {
+    color: #c652c6;
+}
+
+.dropbtn {
+
+}
+
+
+div.mainInfoContainer {
+    margin: 2%;
+}
+
+h1 {
+    margin: 16px;
+    color: #c652c6;
+    font-size: 250%;
+    font-weight: bolder;
+}
+
+h2 {
+    color: #c652c6;
+    font-size: 175%;
+    font-weight: bold;
+}
+
+h3 {
+    color: #c652c6;
+}
+
+p {
+    color: #eeeeee;
+}
+
+body {
+    background-color: #000000;
+    font-family: sans-serif;
+    font-weight: normal;
+    font-size: 100%;
+}
+/* Main color: blacks and dark greys
+   White text
+   Highlights are #c652c6 (a magenta) and #202020 (purple)
+   I might change these highlights later -- they're a bit bright and happy. */
+

@@ -10,9 +10,10 @@ function redirect($url, $permanent = false)
 function createSession($userID, $login, $level, $username = NULL) {
     if (array_key_exists('login', $_SESSION))
        destroySession();
+    $_SESSION['login']    = $login;
     $_SESSION['userID']   = $userID;
     $_SESSION['level']    = $level;
-    if (array_key_exists('username', $_SESSION)) {
+    if (is_null($username)) {
         $_SESSION['username'] = $login;
     }
     else $_SESSION['username'] = $username;

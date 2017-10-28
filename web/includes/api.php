@@ -15,7 +15,7 @@ if (isset($_GET['do'])) {
             if ($_POST['password'] == $_POST['confirmPassword']) {
                 $addUser = new User($_POST['login']);
                 $addUser->register($_POST['password'], $_POST['code']);
-                redirect('/index.php');
+                redirect('/');
             } else {
                 echo "Those passwords aren't the same!!! :(";
             }
@@ -36,10 +36,10 @@ if (isset($_GET['do'])) {
                 break;
             }
             $bp = new BlogPost();
-            $bp->setAuthor($_SESSION['login']);
-            $bp->setTitle($_POST['title']);
-            $bp->setBody($_POST['body']);
-            $bp->setTags($_POST['tags']);
+            $bp->author = $_SESSION['login'];
+            $bp->title = $_POST['title'];
+            $bp->body = $_POST['body'];
+            $bp->tags = $_POST['tags'];
             $bp->addPost();
             redirect('/');
             break;
