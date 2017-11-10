@@ -32,7 +32,6 @@ class BlogPost {
         $q->bindParam(':title', $this->title);
         $q->bindParam(':body', $this->body);
         $q->bindParam(':tags', $this->tags);
-        $q->bindParam(':creation_date', $this->creation_date);
         $q->execute();
     }
 
