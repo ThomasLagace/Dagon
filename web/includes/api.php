@@ -27,19 +27,16 @@ if (isset($_GET['do'])) {
             break;
 
         case "makepost":
+            foreach ( $_POST as $key ) $_POST[$key] = htmlspecialchars($key, ENT_QUOTES);
             if( !isLoggedIn() ) {
                 echo "Yer not logged in!";
                 break;
             }
-            if( isHtml($_POST['title']) || isHtml($_POST['body']) || isHtml($_POST['tags']) ) {
-                echo "You musn't have html taggens!";
-                break;
-            }
             $bp = new BlogPost();
             $bp->author = $_SESSION['login'];
-            $bp->title = $_POST['title'];
-            $bp->body = $_POST['body'];
-            $bp->tags = $_POST['tags'];
+            $bp->title = htmlspecialchars($_POST['title'], ENT_QUOTES);
+            $bp->body = htmlspecialchars($_POST['body'], ENT_QUOTES);
+            $bp->tags = htmlspecialchars($_POST['tags'], ENT_QUOTES);
             $bp->addPost();
             redirect('/');
             break;

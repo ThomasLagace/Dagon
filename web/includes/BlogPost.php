@@ -8,6 +8,7 @@ class BlogPost {
     public $body = null;
     public $tags = null;
     public $id = null;
+    public $creation_date = null;
     public $hidden = null;
     public $deleted = null;
     
@@ -31,6 +32,7 @@ class BlogPost {
         $q->bindParam(':title', $this->title);
         $q->bindParam(':body', $this->body);
         $q->bindParam(':tags', $this->tags);
+        $q->bindParam(':creation_date', $this->creation_date);
         $q->execute();
     }
 
@@ -48,6 +50,7 @@ class BlogPost {
         $this->body = $r['body'];
         $this->tags = $r['tags'];
         $this->author = $r['author'];
+        $this->creation_date = $r['creation_date'];
         return $r;
     }
 
