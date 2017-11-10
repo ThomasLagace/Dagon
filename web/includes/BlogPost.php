@@ -51,7 +51,7 @@ class BlogPost {
         return $r;
     }
 
-    public function show($start, $end) {
+    public static function show($start, $end) {
         global $db;
         $q = $db->prepare("SELECT * FROM posts ORDER BY id DESC LIMIT :end OFFSET :start");
         $q->bindParam(':start', $start);

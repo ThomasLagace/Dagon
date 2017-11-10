@@ -1,7 +1,10 @@
 <?php require_once('./includes/BlogPost.php');
     require_once('./includes/core.php');
     require_once('./assets/templates/head.php');
-?>
+    if(key_exists('pg', $_GET) && is_int($_GET['pg']) && $_GET['pg'] >= 0) {
+        $page = $_GET['pg'];
+    } else $page = 0; //Make it so one may change pages in the index
+    ?>
 
 <?php require_once('./assets/templates/header.php'); ?>
     <p>This is an early development blog. Login to the form below.</p>
@@ -20,7 +23,7 @@
     </form>
 
     <a href="/includes/api.php?do=logout">Un_plug</a>
-    <br>
+    <br />
     <a href="/test.php">Testing Function</a>
 
     <p>You are jacked in as: <?php //user name here
@@ -29,20 +32,15 @@
         } else echo $_SESSION['username'] . " with a level of: " . $_SESSION['level'] . "</p>
             <p><a href='/makepost.php'>Make a post!</a></p>"; 
     ?>
-    <div class=mainInfoContainer>
-        <?php require_once('./assets/templates/sidebar.php');?>
+    <section>
         <?php 
-        $blogPost = new BlogPost(0);
-        if (isset($_GET['pg']) && is_int($_GET['pg'])) {
-            $r = $blogPost->show(0, 5);
-        }
-        else $r = $blogPost->show($_GET['pg']*5, 5) ?>
-
+        $r = BlogPost::show($page*5, 5) ?>
         <?php foreach ($r as $key => $info): ?>
             <?php require('./assets/templates/blogpost.php') ?>
         <?php endforeach ?>
-    </div>
-    <a href="./?pg=<?= $_GET['pg'] - 1 ?>">Previous</a>
-    <a href="./?pg=<?= $_GET['pg'] + 1 ?>">Next</a>
-    </body>
+        <p style="text-align: center">
+            <a href="./?pg=<?= $page - 1 ?>">Previous</a>
+            <a href="./?pg=<?= $page + 1 ?>">Next</a>
+        </p>
+    </section>
 <?php require_once('./assets/templates/foot.php'); ?>

@@ -6,34 +6,34 @@ p.codeblock {
     color: #eeeeee;
 }
 
-.blogPost { 
-    float: left;
-    background-color: #070707;
-    color: #eeeeee;
-    margin-top: 1%;
-    margin-bottom: 1%;
-    width: 80%;
-    padding: 24px;
-    border: 2px solid #202020;
-}
-
-.sidebar {
-    float: right;
-    background-color: #070707;
+article {
+    margin: auto;
     color: #eeeeee;
     margin-top: 1%;
     padding: 1%;
     border: 2px solid #202020;
-    width: 12%;
+    width: 65%;
 }
 
-.header {
-    margin: 2%;
+header {
+    width: 65%;
+    text-align: center;
+    margin: auto;
     margin-top: 0%;
-    background-color: #070707;
-    padding: 1px;
+    /*background-color: #070707;*/
+    padding-left: 16px;
+    padding-right: 16px;
     border: 2px solid #202020;
 }
+footer {
+    text-align: center;
+    border-top: 2px dotted #202020;
+}
+
+aside {
+
+}
+
 a.bigLink {
     color: #c652c6;
 }
@@ -52,13 +52,14 @@ div.mainInfoContainer {
 }
 
 h1 {
-    margin: 16px;
+    text-align: center;
     color: #c652c6;
     font-size: 250%;
     font-weight: bolder;
 }
 
 h2 {
+    text-align: center;
     color: #c652c6;
     font-size: 175%;
     font-weight: bold;
@@ -73,7 +74,7 @@ p {
 }
 
 body {
-    background-color: #000000;
+    background-color: #070707;
     font-family: sans-serif;
     font-weight: normal;
     font-size: 100%;
