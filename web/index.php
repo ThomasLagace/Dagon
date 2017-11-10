@@ -1,10 +1,10 @@
 <?php require_once('./includes/BlogPost.php');
     require_once('./includes/core.php');
     require_once('./assets/templates/head.php');
-    if(key_exists('pg', $_GET) && is_int($_GET['pg']) && $_GET['pg'] >= 0) {
-        $page = $_GET['pg'];
-    } else $page = 0; //Make it so one may change pages in the index
-    ?>
+    $page = 0;
+    if(key_exists('pg', $_GET) && $_GET['pg'] >= 0)
+        $page = $_GET['pg']; //Make it so one may change pages in the index
+?>
 
 <?php require_once('./assets/templates/header.php'); ?>
     <p>This is an early development blog. Login to the form below.</p>
