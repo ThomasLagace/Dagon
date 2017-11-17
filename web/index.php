@@ -22,10 +22,7 @@
         <input type="submit" value="Register">
     </form>
 
-    <a href="/includes/api.php?do=logout">Un_plug</a>
-    <br />
-    <a href="/test.php">Testing Function</a>
-
+    <p><a href="/includes/api.php?do=logout">Un_plug</a></p>
     <p>You are jacked in as: <?php //user name here
         if (!isset($_SESSION['username']) ) {
             echo 'nobody</p>';
