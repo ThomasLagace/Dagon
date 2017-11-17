@@ -15,7 +15,7 @@ class BlogPost {
     public function __construct($id = NULL) { //By default, it fetches a post with a specified id
         $this->id = $id;
         if (isset($this->id)) {
-            print_r($this->fetchPost($id));
+            $this->fetchPost($id);
         }
         else {
             $this->exists = false;
@@ -33,6 +33,21 @@ class BlogPost {
         $q->bindParam(':body', $this->body);
         $q->bindParam(':tags', $this->tags);
         $q->execute();
+    }
+
+    public function deletePost($permanent = false) {
+        global $db;
+        if($permanent) {
+            $q = $db->prepare("DELETE FROM posts WHERE id = :id");
+            $q->bindParam(':id', $id);
+            $q->execute();
+        }
+        else {
+            $q = $db->prepare("UPDATE posts SET deleted = false WHERE id = :id");
+            $q->bindParam(':id', $id);
+            $q->execute();
+        }
+        $this->deleted = true;
     }
 
     private function fetchPost() {

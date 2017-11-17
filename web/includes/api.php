@@ -34,9 +34,9 @@ if (isset($_GET['do'])) {
             }
             $bp = new BlogPost();
             $bp->author = $_SESSION['login'];
-            $bp->title = htmlspecialchars($_POST['title'], ENT_QUOTES);
-            $bp->body = htmlspecialchars($_POST['body'], ENT_QUOTES);
-            $bp->tags = htmlspecialchars($_POST['tags'], ENT_QUOTES);
+            $bp->title = htmlspecialchars($_POST['title'], ENT_QUOTES, 'UTF-8');
+            $bp->body = htmlspecialchars($_POST['body'], ENT_QUOTES, 'UTF-8');
+            $bp->tags = htmlspecialchars($_POST['tags'], ENT_QUOTES, 'UTF-8');
             $bp->addPost();
             redirect('/');
             break;
