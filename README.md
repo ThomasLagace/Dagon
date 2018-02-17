@@ -4,6 +4,10 @@ Why am I making this?
 ---------------------
 I really just want a personal blogging site to use. That's 'bout it.
 
+This project has actually been discontinued. It was mostly also made
+to learn about backend website development. I will likely remake this
+site with a better UI in a real framework soon.
+
 Features
 --------
 You can:
@@ -24,8 +28,10 @@ I don't really know if it'll work with anything else, but I'm using
 
 STANDARDS FOR (ME) YOU
 =======================
+
 Directory Structure
 -------------------
+*Note that this is a bit outdated*
 ```
 ├── sql                 -- Database stuff go here
 └── web                 -- $DOCROOT
